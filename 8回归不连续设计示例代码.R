@@ -7,7 +7,7 @@ library(rdrobust)
 df3 <- df2[df2$time == 1, ]  
 # 将 time 为 3 的数据保存为 df4，为2015年数据。
 df4 <- df2[df2$time == 3, ]  
-# 读取 Excel 文件（路径指定为 G: 盘下的文件），选择第二个工作表。
+# 读取 Excel 文件，选择第二个工作表。
 df5 <- read.xlsx("path\\sampled_df.xlsx ", sheet = 2)  
 # 加载 dplyr 包，提供数据操作的函数。
 library(dplyr)  
@@ -26,8 +26,9 @@ ws <- ipwpoint(exposure = bc, family = "gaussian",
 # 将计算出的 IPW 权重存入 df_combined_all 的新列 `ws`
 df_combined_all$ws = ws$ipw.weights  
 
-# 使用 rdrobust 进行回归不连续性设计分析，# 使用 rdrobust 函数进行回归不连续性分析，bmi 为因变量，bc 为自变量，c 为切点。
+# 使用 rdrobust 进行回归不连续性设计分析，使用 rdrobust 函数进行回归不连续性分析，bmi 为因变量，bc 为自变量，c 为切点。
 model <- rdrobust(y = df_combined_all$bmi, x = df_combined_all$bc, c = mean(df_combined_all$ws))  
 # 输出回归不连续性分析的结果摘要
 summary(model)  
+
 
