@@ -41,3 +41,4 @@ model = casecross(cvd ~ o3mean + Mon + Tue + Wed + Thu + Fri + Sat,
 # 输出回归分析结果
 summary(model)  
 
+
